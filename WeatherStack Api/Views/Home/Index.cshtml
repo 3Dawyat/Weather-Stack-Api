@@ -1,0 +1,20 @@
+﻿@model HomeModel
+
+<div id="search"  class="row d-flex justify-content-center mt-100">
+    <div class="col-md-4">
+        <form method="post" asp-action="Weather" class="flex-nowrap col ml-auto footer-subscribe p-0">
+            <select asp-for="CountryName" required class="form-control">
+                @foreach (var country in Model.Country)
+                {
+                    @foreach (var coun in country.cities)
+                    {
+                        <option>@country.country, @coun</option>
+                    }
+                }
+            </select>
+            <button type="submit" class="btn btn-theme bg-orange">
+                <i class="fa fa-search p-0"></i>
+            </button>
+        </form>
+    </div>
+</div>

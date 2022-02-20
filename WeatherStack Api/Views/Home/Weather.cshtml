@@ -1,0 +1,74 @@
+﻿@model HomeModel
+<div class="container px-1 px-sm-4 py-5 mx-auto">
+    <div style=" margin: auto; max-width: 82%; margin-top:3%" class="col-md-4">
+        <form method="post" asp-action="Weather" class="flex-nowrap col ml-auto footer-subscribe p-0">
+            <select asp-for="CountryName" required class="form-control">
+                @foreach (var country in Model.Country)
+                {
+                    @foreach (var coun in country.cities)
+                      {
+                        <option>@country.country, @coun</option>
+                      }
+                }
+            </select>
+            <button type="submit" class="btn btn-theme bg-orange">
+                <i class="fa fa-search p-0"></i>
+            </button>
+        </form>
+    </div>
+    <div style="margin: auto; width: 80%; box-shadow: 0px 0px 36px 0px grey; border-radius: 20px; padding: 10px; margin-top: 4%; " class="row d-flex justify-content-center">
+        <div style=" width: 99%;" class="card text-center pt-4 border-0">
+            <h4 class="mb-0">@Model.Weather.location.country @Model.Weather.location.name</h4>
+            <small class="text-muted mb-3">@Model.Weather.current.weather_descriptions[0]</small>
+            <div class="text-center mt-3 mb-4">
+                <img class="city-symbol" src="https://i.imgur.com/QA63I0q.png">
+            </div>
+            <small class="text-muted mb-3">@Model.Weather.location.localtime</small>
+            <h1 class="mb-0">@Model.Weather.current.temperature&#176;</h1>
+            <div class="row d-flex px-3 mt-auto">
+                <div style="  height: 93%;" class="d-flex flex-column block">
+                    <small class="text-muted mb-0">Wind Speed</small>
+                    <div class="text-center">
+                    </div>
+                    <h6>
+                        <strong>@Model.Weather.current.wind_speed KM</strong>
+                    </h6>
+                </div>
+                <div style=" height: 93%;" class="d-flex flex-column block">
+                    <small class="text-muted mb-0">Wind Direction</small>
+                    <div class="text-center">
+                    </div>
+                    <h6>
+                        <strong>@Model.Weather.current.wind_dir</strong>
+                    </h6>
+                </div>
+                <div style=" height: 93%; " class="d-flex flex-column block">
+                    <small class="text-muted mb-0">Timezone</small>
+                    <div class="text-center">
+                    </div>
+                    <h6>
+                        <strong>@Model.Weather.location.timezone_id</strong>
+                    </h6>
+                </div>
+                <div style=" height: 93%; " class="d-flex flex-column block">
+                    <small class="text-muted mb-0">Humidity</small>
+                    <div class="text-center">
+                    </div>
+                    <h6>
+                        <strong>@Model.Weather.current.humidity&#176;</strong>
+                    </h6>
+                </div>
+                <div style=" height: 93%; " class="d-flex flex-column block">
+                    <small class="text-muted mb-0">Cloud Cover</small>
+                    <div class="text-center">
+                    </div>
+                    <h6>
+                        <strong>@Model.Weather.current.cloudcover %</strong>
+                    </h6>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
